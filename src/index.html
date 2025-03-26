@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop</title>
+    <link rel="stylesheet" href="./style_minimal.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Coffee Shop</h1>
+        </div>
+        <div class="search-filter">
+            <input type="text" id="search" placeholder="Search coffees...">
+            <select id="category-filter">
+                <option value="all">All Categories</option>
+                <!-- Categories will be added dynamically -->
+            </select>
+        </div>
+        <div class="header-actions">
+            <button id="add-coffee-nav-btn" class="admin-button" style="display: none;">Add Coffee</button>
+            <div id="theme-toggle" class="theme-toggle" title="Toggle dark mode">
+                <span>☀️</span>
+                <span>🌙</span>
+            </div>
+            <button id="cart-btn" class="cart-button">
+                <span>🛒</span>
+                <span id="cart-count" class="cart-count">0</span>
+            </button>
+            <button id="admin-btn" class="admin-button">Admin</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="coffee-menu-container">
+            <h2>Our Coffee Selection</h2>
+            <div id="coffee-menu" class="coffee-menu">
+                <!-- Coffee items will be loaded here -->
+                <p class="loading-message">Loading coffee menu...</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Modal with Checkout -->
+    <div id="cart-modal" class="modal hidden">
+        <div class="modal-content cart-modal-content">
+            <span class="close">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cart-items" class="cart-items">
+                <p class="empty-cart-message">Your cart is empty</p>
+            </div>
+            <div class="cart-footer">
+                <p id="cart-total">Total: KES 0</p>
+                <div class="cart-actions">
+                    <button id="clear-cart-btn" class="secondary-button">Clear Cart</button>
+                </div>
+            </div>
+            
+            <!-- Checkout Section -->
+            <div id="checkout-section" class="checkout-section">
+                <h3>Checkout</h3>
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label for="customer-name">Your Name</label>
+                        <input type="text" id="customer-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment-method">Payment Method</label>
+                        <select id="payment-method" required>
+                            <option value="mobile">Mobile Money</option>
+                            <option value="card">Credit Card</option>
+                            <option value="cash">Cash on Delivery</option>
+                        </select>
+                    </div>
+                    <div class="checkout-total">
+                        <p id="checkout-total">Total: KES 0</p>
+                    </div>
+                    <button type="submit" class="primary-button checkout-button">Complete Purchase</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews Modal -->
+    <div id="reviews-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="reviews-title">Coffee Reviews</h2>
+            <div id="reviews-list" class="reviews-list">
+                <!-- Reviews will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Review Modal -->
+    <div id="review-form-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add Your Review</h2>
+            <form id="review-form">
+                <input type="hidden" id="review-coffee-id">
+                <div class="form-group">
+                    <label for="reviewer-name">Your Name</label>
+                    <input type="text" id="reviewer-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div class="rating-selector">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                    <input type="hidden" id="review-rating" value="0">
+                </div>
+                <div class="form-group">
+                    <label for="review-comment">Your Review</label>
+                    <textarea id="review-comment" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="primary-button">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Check Modal -->
+    <div id="admin-check-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Admin Login</h2>
+            <form id="admin-check-form">
+                <div class="form-group">
+                    <label for="admin-password">Password</label>
+                    <input type="password" id="admin-password" required>
+                </div>
+                <button type="submit" class="primary-button">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Coffee Modal -->
+    <div id="edit-coffee-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Coffee</h2>
+            <form id="edit-coffee-form">
+                <input type="hidden" id="edit-coffee-id">
+                <div class="form-group">
+                    <label for="edit-coffee-name">Name</label>
+                    <input type="text" id="edit-coffee-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-coffee-description">Description</label>
+                    <textarea id="edit-coffee-description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-coffee-price">Price (KES)</label>
+                    <input type="number" id="edit-coffee-price" min="1" step="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-coffee-image">Image URL</label>
+                    <input type="url" id="edit-coffee-image" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-coffee-category">Category</label>
+                    <select id="edit-coffee-category" required>
+                        <option value="hot">Hot</option>
+                        <option value="cold">Cold</option>
+                        <option value="espresso">Espresso</option>
+                        <option value="specialty">Specialty</option>
+                    </select>
+                </div>
+                <button type="submit" class="primary-button">Update Coffee</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container" class="notification-container"></div>
+    
+    <footer>
+        <p>&copy; 2023 Coffee Shop. All rights reserved.</p>
+    </footer>
+
+    <div id="add-coffee-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Coffee</h2>
+            <form id="add-coffee-form">
+                <div class="form-group">
+                    <label for="coffee-name">Name</label>
+                    <input type="text" id="coffee-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="coffee-description">Description</label>
+                    <textarea id="coffee-description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="coffee-price">Price (KES)</label>
+                    <input type="number" id="coffee-price" min="1" step="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="coffee-image">Image URL</label>
+                    <input type="url" id="coffee-image" required>
+                </div>
+                <div class="form-group">
+                    <label for="coffee-category">Category</label>
+                    <select id="coffee-category" required>
+                        <option value="hot">Hot</option>
+                        <option value="cold">Cold</option>
+                        <option value="espresso">Espresso</option>
+                        <option value="specialty">Specialty</option>
+                    </select>
+                </div>
+                <button type="submit" class="primary-button">Add Coffee</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="./script_minimal.js"></script>
+</body>
+</html>

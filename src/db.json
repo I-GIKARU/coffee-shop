@@ -1,0 +1,392 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@kenyanbrew.com",
+      "first_name": "Admin",
+      "last_name": "User",
+      "gender": "male",
+      "isAdmin": true
+    },
+    {
+      "id": "2",
+      "email": "user1@example.com",
+      "first_name": "John",
+      "last_name": "Doe",
+      "gender": "male",
+      "isAdmin": false
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Hot Coffee",
+      "description": "Traditional hot coffee beverages"
+    },
+    {
+      "id": "2",
+      "name": "Iced Coffee",
+      "description": "Refreshing cold coffee drinks"
+    },
+    {
+      "id": "3",
+      "name": "Specialty",
+      "description": "Unique and signature coffee creations"
+    }
+  ],
+  "coffees": [
+    {
+      "id": "1",
+      "name": "Kenyan AA Espresso",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAWosBzZA3A0zVU2XfVnYFWmjuNVOKvyQPRA&s",
+      "description": "Premium Kenyan AA grade coffee beans, known for their bright acidity and wine-like flavor.",
+      "price": 585,
+      "currency": "KES",
+      "category": "espresso",
+      "ratings": 4.8,
+      "isPopular": true
+    },
+    {
+      "id": "2",
+      "name": "Nairobi Special",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFjX1DhauQQeHkyU32IgBe0SrqSS3IONiMHw&s",
+      "description": "A signature blend of Kenyan and Ethiopian beans with notes of blackberry and citrus.",
+      "price": 650,
+      "currency": "KES",
+      "category": "hot",
+      "ratings": 4.6,
+      "isPopular": true
+    },
+    {
+      "id": "3",
+      "name": "Mombasa Iced Coffee",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ7a6vaTpJjIHO3sJMKZ8_Zdzw0Rnd64P0eQ&s",
+      "description": "Cold-brewed Kenyan coffee with coconut milk and a hint of cardamom.",
+      "price": 715,
+      "currency": "KES",
+      "category": "cold",
+      "ratings": 4.7,
+      "isPopular": true
+    },
+    {
+      "id": "4",
+      "name": "Mount Kenya Latte",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNQ0pOptjX90gJDp8o9m16jqW4jfLV3Q0lkA&s",
+      "description": "Rich Kenyan coffee with steamed milk and a touch of honey.",
+      "price": 618,
+      "currency": "KES",
+      "category": "hot",
+      "ratings": 4.5,
+      "isPopular": false
+    },
+    {
+      "id": "5",
+      "name": "Safari Special",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ52E4Cej5Rs40GLORwTlb_kww2bbyA1T6khA&s",
+      "description": "A unique blend of Kenyan coffee with spices and chocolate.",
+      "price": 683,
+      "currency": "KES",
+      "category": "specialty",
+      "ratings": 4.4,
+      "isPopular": false
+    },
+    {
+      "id": "6",
+      "name": "Lake Victoria Mocha",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ52E4Cej5Rs40GLORwTlb_kww2bbyA1T6khA&s",
+      "description": "Kenyan coffee with rich chocolate and a hint of vanilla, topped with cocoa powder.",
+      "price": 748,
+      "currency": "KES",
+      "category": "specialty",
+      "ratings": 4.7,
+      "isPopular": true
+    },
+    {
+      "id": "7",
+      "name": "Rift Valley Cold Brew",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ7a6vaTpJjIHO3sJMKZ8_Zdzw0Rnd64P0eQ&s",
+      "description": "Smooth cold-brewed Kenyan coffee with notes of caramel and citrus.",
+      "price": 650,
+      "currency": "KES",
+      "category": "cold",
+      "ratings": 4.6,
+      "isPopular": true
+    },
+    {
+      "id": "8",
+      "name": "Kilimanjaro Cappuccino",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNQ0pOptjX90gJDp8o9m16jqW4jfLV3Q0lkA&s",
+      "description": "Classic cappuccino made with premium Kenyan coffee beans and perfectly frothed milk.",
+      "price": 556,
+      "currency": "KES",
+      "category": "espresso",
+      "ratings": 4.5,
+      "isPopular": false
+    },
+    {
+      "id": "9",
+      "name": "Kikwetu coffee",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmtBhYG0NO_iAtEMsbwQZhliZNWeDA1sjNwA&s",
+      "description": "a tastefull quality of the best coffee",
+      "price": 650,
+      "currency": "KES",
+      "category": "espresso",
+      "ratings": 4.5,
+      "isPopular": false
+    }
+  ],
+  "reviews": [
+    {
+      "id": "2",
+      "coffeeId": 2,
+      "userId": 2,
+      "comment": "The Nairobi Special is my new favorite. The blackberry notes are incredible!",
+      "rating": 4,
+      "date": "2024-03-24T15:45:00Z",
+      "ticketNumber": "TKT123457"
+    },
+    {
+      "id": "1f57",
+      "coffeeId": 5,
+      "rating": 0,
+      "comment": "tryy",
+      "date": "2025-03-26T09:16:03.123Z",
+      "ticketNumber": "TKT550689107"
+    }
+  ],
+  "tickets": [
+    {
+      "id": "TKT123456",
+      "coffeeId": 1,
+      "quantity": 1,
+      "customerName": "John Doe",
+      "customerEmail": "user1@example.com",
+      "total": 585,
+      "date": "2024-03-25T10:25:00Z",
+      "valid": false
+    },
+    {
+      "id": "TKT123457",
+      "coffeeId": 2,
+      "quantity": 2,
+      "customerName": "John Doe",
+      "customerEmail": "user1@example.com",
+      "total": 1300,
+      "date": "2024-03-24T15:40:00Z",
+      "valid": false
+    },
+    {
+      "id": "TKT479693440",
+      "coffeeId": 3,
+      "quantity": 1,
+      "customerName": "hvg",
+      "total": 715,
+      "date": "2025-03-26T09:14:39.693Z",
+      "valid": true
+    },
+    {
+      "id": "TKT526125497",
+      "coffeeId": 5,
+      "quantity": 1,
+      "customerName": "dgdg",
+      "total": 683,
+      "date": "2025-03-26T09:15:26.125Z",
+      "valid": true
+    },
+    {
+      "id": "TKT550689107",
+      "coffeeId": 5,
+      "quantity": 1,
+      "customerName": "jjkjk",
+      "total": 683,
+      "date": "2025-03-26T09:15:50.689Z",
+      "valid": false
+    },
+    {
+      "id": "TKT528595348",
+      "coffeeId": null,
+      "quantity": 1,
+      "customerName": "jkl",
+      "total": 650,
+      "date": "2025-03-26T11:12:08.596Z",
+      "valid": true
+    },
+    {
+      "id": "TKT_TEST",
+      "coffeeId": 7,
+      "quantity": 1,
+      "customerName": "Test User",
+      "total": 650,
+      "date": "2024-03-26T10:00:00Z",
+      "valid": true
+    },
+    {
+      "id": "TKT712001282",
+      "coffeeId": null,
+      "quantity": 1,
+      "customerName": "jkl",
+      "total": 650,
+      "date": "2025-03-26T11:15:12.001Z",
+      "valid": true
+    },
+    {
+      "id": "TKT075859147",
+      "coffeeId": 9,
+      "quantity": 1,
+      "customerName": "jkl",
+      "total": 650,
+      "date": "2025-03-26T11:21:15.859Z",
+      "valid": false
+    },
+    {
+      "id": "TKT003106130",
+      "coffeeId": 9,
+      "quantity": 1,
+      "customerName": "jkl",
+      "total": 650,
+      "date": "2025-03-26T11:36:43.106Z",
+      "valid": true
+    },
+    {
+      "id": "TKT991743488",
+      "coffeeId": 9,
+      "quantity": 1,
+      "customerName": "jkl",
+      "total": 650,
+      "date": "2025-03-26T12:09:51.743Z",
+      "valid": true
+    },
+    {
+      "id": "TKT005685168",
+      "coffeeId": 2,
+      "quantity": 1,
+      "customerName": "jkl",
+      "total": 650,
+      "date": "2025-03-26T12:10:05.685Z",
+      "valid": true
+    },
+    {
+      "id": "TKT285519532",
+      "coffeeId": 5,
+      "quantity": 1,
+      "customerName": "jkl",
+      "total": 683,
+      "date": "2025-03-26T12:14:45.520Z",
+      "valid": true
+    },
+    {
+      "id": "TKT414887102",
+      "coffeeId": 9,
+      "quantity": 1,
+      "customerName": "jkl",
+      "total": 650,
+      "date": "2025-03-26T12:16:54.888Z",
+      "valid": true
+    },
+    {
+      "id": "TKT584343578",
+      "coffeeId": 9,
+      "quantity": 1,
+      "customerName": "jkl",
+      "total": 650,
+      "date": "2025-03-26T12:19:44.344Z",
+      "valid": true
+    },
+    {
+      "id": "TKT601060367",
+      "coffeeId": 5,
+      "quantity": 1,
+      "customerName": "jkl",
+      "total": 683,
+      "date": "2025-03-26T12:20:01.061Z",
+      "valid": true
+    },
+    {
+      "id": "TKT614794891",
+      "coffeeId": 5,
+      "quantity": 1,
+      "customerName": "jkl",
+      "total": 683,
+      "date": "2025-03-26T12:20:14.794Z",
+      "valid": true
+    },
+    {
+      "id": "TKT022345949",
+      "items": [
+        {
+          "coffeeId": "1",
+          "quantity": 1,
+          "name": "Kenyan AA Espresso",
+          "price": 585
+        },
+        {
+          "coffeeId": "2",
+          "quantity": 1,
+          "name": "Nairobi Special",
+          "price": 650
+        }
+      ],
+      "customerName": "gggg",
+      "total": 1235,
+      "date": "2025-03-26T12:27:02.346Z",
+      "valid": true
+    },
+    {
+      "id": "TKT373907062",
+      "items": [
+        {
+          "coffeeId": "1",
+          "quantity": 1,
+          "name": "Kenyan AA Espresso",
+          "price": 585
+        },
+        {
+          "coffeeId": "2",
+          "quantity": 1,
+          "name": "Nairobi Special",
+          "price": 650
+        }
+      ],
+      "customerName": "gggg",
+      "total": 1235,
+      "date": "2025-03-26T12:32:53.908Z",
+      "valid": true
+    },
+    {
+      "id": "TKT578226059",
+      "items": [
+        {
+          "coffeeId": "9",
+          "quantity": 1,
+          "name": "Kikwetu coffee",
+          "price": 650
+        },
+        {
+          "coffeeId": "5",
+          "quantity": 1,
+          "name": "Safari Special",
+          "price": 683
+        }
+      ],
+      "customerName": "gggg",
+      "total": 1333,
+      "date": "2025-03-26T12:36:18.227Z",
+      "valid": true
+    },
+    {
+      "id": "TKT212453158",
+      "items": [
+        {
+          "coffeeId": "1",
+          "quantity": 1,
+          "name": "Kenyan AA Espresso",
+          "price": 585
+        }
+      ],
+      "customerName": "ggg",
+      "total": 585,
+      "date": "2025-03-26T15:50:12.453Z",
+      "valid": true
+    }
+  ]
+}

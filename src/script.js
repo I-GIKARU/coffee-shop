@@ -1,5 +1,5 @@
 // API Configuration and State
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://cofee-app.onrender.com';
 let coffees = [], reviews = [], categories = [], cart = [];
 let isAdminMode = false;
 const ADMIN_PASSWORD = 'admin123'; // Password for admin access
@@ -209,13 +209,13 @@ function renderCoffeeMenu(filteredCoffees) {
   const toRender = filteredCoffees || coffees;
   
   menu.innerHTML = toRender.map(coffee => `
-    <div class="coffee-card">
+        <div class="coffee-card">
       <img src="${coffee.image || 'placeholder.jpg'}" alt="${coffee.name}" class="coffee-image">
-      <div class="coffee-info">
+            <div class="coffee-info">
         <h3>${coffee.name}</h3>
-        <p class="coffee-description">${coffee.description}</p>
+                <p class="coffee-description">${coffee.description}</p>
         <p class="coffee-price">${coffee.currency || 'KES'} ${coffee.price.toFixed(2)}</p>
-        <div class="coffee-actions">
+                <div class="coffee-actions">
           <button class="primary-button add-to-cart" data-id="${coffee.id}">Add to Cart</button>
           <button class="secondary-button view-reviews" data-id="${coffee.id}">Reviews</button>
           <button class="secondary-button add-review" data-id="${coffee.id}">Add Review</button>
@@ -223,10 +223,10 @@ function renderCoffeeMenu(filteredCoffees) {
             <button class="edit-coffee" data-id="${coffee.id}">Edit</button>
             <button class="delete-coffee" data-id="${coffee.id}">Delete</button>
           ` : ''}
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  `).join('');
+    `).join('');
 }
 
 // Filter and search
@@ -237,10 +237,10 @@ function filterCoffees() {
   const filtered = coffees.filter(coffee => {
     const matchesSearch = coffee.name.toLowerCase().includes(search) || 
                          coffee.description.toLowerCase().includes(search);
-    const matchesCategory = category === 'all' || coffee.category === category;
-    return matchesSearch && matchesCategory;
-  });
-  
+        const matchesCategory = category === 'all' || coffee.category === category;
+        return matchesSearch && matchesCategory;
+    });
+    
   renderCoffeeMenu(filtered);
 }
 
@@ -253,7 +253,7 @@ function addToCart(coffeeId) {
   
   if (existingItem) {
     existingItem.quantity += 1;
-  } else {
+        } else {
     cart.push({ 
       id: coffee.id, 
       name: coffee.name, 
@@ -296,16 +296,16 @@ function openCartModal() {
           <div class="cart-item-info">
             <h4>${item.name}</h4>
             <p>KES ${item.price.toFixed(2)} x ${item.quantity}</p>
-          </div>
+                </div>
           <div class="cart-item-total">KES ${itemTotal.toFixed(2)}</div>
           <div class="cart-item-actions">
             <button class="decrease-quantity" data-id="${item.id}">-</button>
             <span class="item-quantity">${item.quantity}</span>
             <button class="increase-quantity" data-id="${item.id}">+</button>
             <button class="remove-item" data-id="${item.id}">🗑️</button>
-          </div>
-        </div>
-      `;
+                </div>
+            </div>
+        `;
     }).join('');
     
     const total = getCartTotal().toFixed(2);
@@ -394,9 +394,9 @@ function showReviews(coffeeId) {
           <div class="review-footer">
             <small>- ${review.customerName || 'Anonymous'}</small>
             ${isAdminMode ? `<button class="delete-review" data-id="${review.id}">Delete</button>` : ''}
-          </div>
+            </div>
         </div>
-      `).join('');
+    `).join('');
   
   modal.classList.remove('hidden');
 }
@@ -434,28 +434,28 @@ async function submitReview(e) {
     
     document.querySelectorAll('.modal').forEach(m => m.classList.add('hidden'));
     showNotification('Review submitted successfully!', 'success');
-  } catch (error) {
+    } catch (error) {
     showNotification(`Error: ${error.message}`, 'error');
-  }
+    }
 }
 
 async function deleteReview(reviewId) {
   if (!isAdminMode || !confirm('Are you sure you want to delete this review?')) return;
-  
-  try {
-    const response = await fetch(`${API_URL}/reviews/${reviewId}`, {
-      method: 'DELETE'
-    });
-    
-    if (!response.ok) throw new Error('Failed to delete review');
-    
-    reviews = reviews.filter(r => r.id != reviewId);
+
+    try {
+        const response = await fetch(`${API_URL}/reviews/${reviewId}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) throw new Error('Failed to delete review');
+
+        reviews = reviews.filter(r => r.id != reviewId);
     
     const coffeeId = document.getElementById('reviews-title')?.dataset.coffeeId;
     if (coffeeId) showReviews(coffeeId);
     
     showNotification('Review deleted successfully', 'success');
-  } catch (error) {
+    } catch (error) {
     showNotification(`Error: ${error.message}`, 'error');
   }
 }
@@ -464,7 +464,7 @@ async function deleteReview(reviewId) {
 function editCoffee(coffeeId) {
   if (!isAdminMode) return;
   
-  const coffee = coffees.find(c => c.id == coffeeId);
+    const coffee = coffees.find(c => c.id == coffeeId);
   if (!coffee) return;
   
   // Fill form with coffee data
@@ -492,33 +492,33 @@ async function handleEditCoffee(e) {
   if (!isAdminMode) return;
   
   const coffeeId = document.getElementById('edit-coffee-id').value;
-  const updatedCoffee = {
-    name: document.getElementById('edit-coffee-name').value,
-    description: document.getElementById('edit-coffee-description').value,
-    price: parseFloat(document.getElementById('edit-coffee-price').value),
+    const updatedCoffee = {
+        name: document.getElementById('edit-coffee-name').value,
+        description: document.getElementById('edit-coffee-description').value,
+        price: parseFloat(document.getElementById('edit-coffee-price').value),
     image: document.getElementById('edit-coffee-image').value,
     category: document.getElementById('edit-coffee-category').value
-  };
-  
-  try {
-    const response = await fetch(`${API_URL}/coffees/${coffeeId}`, {
-      method: 'PATCH',
+    };
+
+    try {
+        const response = await fetch(`${API_URL}/coffees/${coffeeId}`, {
+            method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedCoffee)
-    });
-    
+            body: JSON.stringify(updatedCoffee)
+        });
+
     if (!response.ok) throw new Error('Failed to update coffee');
-    
+
     const coffee = await response.json();
-    const index = coffees.findIndex(c => c.id == coffeeId);
+        const index = coffees.findIndex(c => c.id == coffeeId);
     if (index !== -1) coffees[index] = coffee;
-    
+        
     document.getElementById('edit-coffee-modal').classList.add('hidden');
-    renderCoffeeMenu();
+        renderCoffeeMenu();
     updateCategoryOptions();
     
     showNotification(`${coffee.name} updated successfully`, 'success');
-  } catch (error) {
+    } catch (error) {
     showNotification(`Error: ${error.message}`, 'error');
   }
 }
@@ -528,23 +528,23 @@ async function handleAddCoffee(e) {
   if (!isAdminMode) return;
   
   const nextId = Math.max(0, ...coffees.map(c => parseInt(c.id) || 0)) + 1;
-  const newCoffee = {
+    const newCoffee = {
     id: nextId,
-    name: document.getElementById('coffee-name').value,
-    description: document.getElementById('coffee-description').value,
-    price: parseFloat(document.getElementById('coffee-price').value),
+        name: document.getElementById('coffee-name').value,
+        description: document.getElementById('coffee-description').value,
+        price: parseFloat(document.getElementById('coffee-price').value),
     image: document.getElementById('coffee-image').value,
-    category: document.getElementById('coffee-category').value,
+        category: document.getElementById('coffee-category').value,
     currency: 'KES'
-  };
-  
-  try {
-    const response = await fetch(`${API_URL}/coffees`, {
-      method: 'POST',
+    };
+
+    try {
+        const response = await fetch(`${API_URL}/coffees`, {
+            method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newCoffee)
-    });
-    
+            body: JSON.stringify(newCoffee)
+        });
+
     if (!response.ok) throw new Error('Failed to add coffee');
     
     const coffee = await response.json();
@@ -556,25 +556,25 @@ async function handleAddCoffee(e) {
     renderCoffeeMenu();
     updateCategoryOptions();
     showNotification(`${coffee.name} added successfully`, 'success');
-  } catch (error) {
+    } catch (error) {
     showNotification(`Error: ${error.message}`, 'error');
-  }
+    }
 }
 
 async function deleteCoffee(coffeeId) {
   if (!isAdminMode || !confirm('Are you sure you want to delete this coffee?')) return;
-  
-  try {
+
+    try {
     const response = await fetch(`${API_URL}/coffees/${coffeeId}`, {
-      method: 'DELETE'
-    });
-    
+            method: 'DELETE'
+        });
+
     if (!response.ok) throw new Error('Failed to delete coffee');
     
     coffees = coffees.filter(c => c.id != coffeeId);
     renderCoffeeMenu();
     showNotification('Coffee deleted successfully', 'success');
-  } catch (error) {
+    } catch (error) {
     showNotification(`Error: ${error.message}`, 'error');
   }
 }
@@ -594,4 +594,4 @@ function showNotification(message, type = 'info', duration = 3000) {
     notification.style.opacity = '0';
     setTimeout(() => container.removeChild(notification), 300);
   }, duration);
-} 
+}
